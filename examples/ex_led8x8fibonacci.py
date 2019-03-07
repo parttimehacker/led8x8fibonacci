@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Test Bed for Diyhas System Status class """
+""" Example of the Fibonacci 8x8 LED matrix dispplay class """
 
 import time
 from threading import Thread, Lock

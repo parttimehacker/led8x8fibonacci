@@ -1,10 +1,5 @@
 #!/usr/bin/python3
-""" Manage and display the fibonacci series as a 64 bit integer on an Adafruit LED 8x8 backpack """
-
-import time
-from threading import Thread
-
-from Adafruit_Python_LED_Backpack.Adafruit_LED_Backpack import BicolorMatrix8x8
+""" Display the fibonacci series as a 64 bit pattern on an Adafruit 8x8 LED backpack """
 
 BRIGHTNESS = 5
 
@@ -13,10 +8,10 @@ UPDATE_RATE_SECONDS = 0.2
 LARGEST_64_BIT_FIBONACCI = 7540113804746346429
 
 class Led8x8Fibonacci:
-    """ Fibinocci diplay on an 8x8 matrix. Represents 1 to largest 64 bit fibinocci number """
+    """ fibinocci pattern from 1 to largest 64 bit representation  """
 
     def __init__(self, matrix8x8, lock):
-        """ create the fibinacci object """
+        """ create initial conditions and saving display and I2C lock """
         self.matrix = matrix8x8
         self.bus_lock = lock
         self.iterations = 0
@@ -35,7 +30,7 @@ class Led8x8Fibonacci:
         self.bus_lock.release()
 
     def display(self,):
-        """ display the fibinocci series as a 64 bit image """
+        """ display the series as a 64 bit image with alternating colored pixels """
         time.sleep(UPDATE_RATE_SECONDS)
         self.bus_lock.acquire(True)
         for ypixel in range(0, 8):
