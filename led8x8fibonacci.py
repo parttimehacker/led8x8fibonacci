@@ -6,14 +6,11 @@ from threading import Thread
 
 from Adafruit_Python_LED_Backpack.Adafruit_LED_Backpack import BicolorMatrix8x8
 
-BLACK = 0
-GREEN = 1
-YELLOW = 3
-RED = 2
-
 BRIGHTNESS = 5
 
-MAX_FIBONACCI = 7540113804746346429
+UPDATE_RATE_SECONDS = 0.2
+
+LARGEST_64_BIT_FIBONACCI = 7540113804746346429
 
 class Led8x8Fibonacci:
     """ Fibinocci diplay on an 8x8 matrix. Represents 1 to largest 64 bit fibinocci number """
@@ -28,7 +25,7 @@ class Led8x8Fibonacci:
         self.fib3 = 2
 
     def reset(self,):
-        """ initialize and start the fibinnocci display """
+        """ initialize to starting state and set brightness """
         self.bus_lock.acquire(True)
         self.iterations = 0
         self.fib1 = 1
@@ -39,7 +36,7 @@ class Led8x8Fibonacci:
 
     def display(self,):
         """ display the fibinocci series as a 64 bit image """
-        time.sleep(0.2)
+        time.sleep(UPDATE_RATE_SECONDS)
         self.bus_lock.acquire(True)
         for ypixel in range(0, 8):
             for xpixel in range(0, 8):
@@ -56,7 +53,7 @@ class Led8x8Fibonacci:
         self.fib1 = self.fib2
         self.fib2 = self.fib3
         self.fib3 = self.fib1 + self.fib2
-        if self.fib3 > MAX_FIBONACCI:
+        if self.fib3 > LARGEST_64_BIT_FIBONACCI:
             self.fib1 = 1
             self.fib2 = 1
             self.fib3 = 2
