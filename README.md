@@ -4,7 +4,7 @@ Displays the fibonacci sequence as a 64 bit value on an Adafruit 8x8 matrix LED 
 
 Requirements
 ```
-The 8x8 LED device handle and a thread lock must be passed during instantiation of the Led8x8Fibonacci object
+8x8 LED device and a thread lock passed during Led8x8Fibonacci object instantiation
 ```
 
 Behavior
@@ -12,6 +12,5 @@ Behavior
 
 The Led8x8Fibonacci class manages the timing of the update and also resets itself after a maximum 64 bit fibonacci number is computed. The maximum fibonacci that can be represented by a 64 bit value is ...
 ```
-344
+7,540,113,804,746,346,429
 ```
-
