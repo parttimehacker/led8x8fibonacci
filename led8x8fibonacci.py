@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ Display the fibonacci series as a 64 bit pattern on an Adafruit 8x8 LED backpack """
 
+import time
+
 BRIGHTNESS = 5
 
 UPDATE_RATE_SECONDS = 0.2
@@ -13,6 +15,7 @@ class Led8x8Fibonacci:
     def __init__(self, matrix8x8, lock):
         """ create initial conditions and saving display and I2C lock """
         self.matrix = matrix8x8
+        self.matrix.begin()
         self.bus_lock = lock
         self.iterations = 0
         self.fib1 = 1
@@ -41,9 +44,9 @@ class Led8x8Fibonacci:
                 reg = self.fib3 >> (8 * xpixel)
                 bit = reg & (1 << ypixel)
                 if bit == 0:
-                    self.matrix.set_pixel(ypixel, xpixel, 0)
+                    self.matrix.set_pixel(xpixel, ypixel, 0)
                 else:
-                    self.matrix.set_pixel(ypixel, xpixel, self.iterations)
+                    self.matrix.set_pixel(xpixel, ypixel, self.iterations)
         self.matrix.write_display()
         self.fib1 = self.fib2
         self.fib2 = self.fib3
